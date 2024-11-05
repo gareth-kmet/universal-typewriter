@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML 5 Boilerplate</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script
+        type="module"
+        src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@2/dist/zero-md.min.js"
+    ></script>
+    <script>hljs.highlightAll();</script>
+
+  </head>
+  <body>
+    <iframe name="game" id="game"></iframe>
+    <form onsubmit="javascript:return false">
+        <fieldset id="input">
+            <legend>Input</legend>
+        </fieldset>
+        <code id="validation"></code>
+        <br>
+        <br>
+        <fieldset id="output">
+            <legend>Output</legend>
+        </fieldset>
+        <br>
+        <br>
+        <fieldset>
+            <legend>Source Files</legend>
+            <fieldset>
+                <legend><code>main.js</code></legend>
+                <button id="source-main-btn" class="view-source source-hide-btn" onclick="javascript:viewSource('source-main')">v</button>
+                <div id="source-main" class="source-hide"></div>
+            </fieldset>
+            <fieldset>
+                <legend><code>globals.js</code></legend>
+                <button id="source-globals-btn" class="view-source source-hide-btn" onclick="javascript:viewSource('source-globals')">v</button>
+                <div id="source-globals" class="source-hide"></div>
+            </fieldset>
+            <fieldset>
+                <legend><code>projects.js</code></legend>
+                <button id="source-projects-btn" class="view-source source-hide-btn" onclick="javascript:viewSource('source-projects')">v</button>
+                <div id="source-projects" class="source-hide"></div>
+            </fieldset>
+            <fieldset>
+                <legend><code>combat.js</code></legend>
+                <button id="source-combat-btn" class="view-source source-hide-btn" onclick="javascript:viewSource('source-combat')">v</button>
+                <div id="source-combat" class="source-hide"></div>
+            </fieldset>
+        </fieldset>
+        <br>
+        <br>
+        <zero-md src="/rules.md"></zero-md>
+    </form>
+    <script src="main1.js"></script>
+  </body>
+</html>

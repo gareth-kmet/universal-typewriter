@@ -1,0 +1,17 @@
+#game {
+    min-height: 701px;
+    min-width: 701px;
+    display: none;
+}
+
+.saveBtn {
+    float: right
+}
+
+.source-hide{
+    display:none
+}
+
+.source-hide-btn{
+    
+}
