@@ -15,6 +15,8 @@ const hist = [];
 var currentHist = -1;
 var numberOfEvals = 0;
 
+var gameComplete = false;
+
 var objects = [game];
 
 const inputDiv = document.getElementById("input");
@@ -37,8 +39,19 @@ function runCode(){
 
     console.log(getStringCode(), val)
 
+    console.log(input)
+
     displayOutput(input, val);
     
+    if(input == "isGameWon()" && game.isGameWon()){
+        console.log("You win")
+        gameComplete = true;
+        currentInput().blur()
+        currentInput().hidden = true
+        document.getElementById("win").hidden = false
+        return true
+        
+    }
     newInput();
     
     return false;
@@ -69,16 +82,19 @@ function displayOutput(input, val){
     node.appendChild(code);
     hljs.highlightElement(node);
 
-    const btn = document.createElement("button");
-    const txt = document.createTextNode("Store as global");
-    btn.appendChild(txt);
-    $(btn).data("eval-num", numberOfEvals++);
-    $(btn).data("eval-context", objects[objects.length-1]);
-    $(btn).data("eval-result", val);
-    btn.classList.add("saveBtn");
-    btn.onclick = saveVariable;
+    if(typeof val != "function"){
+        const btn = document.createElement("button");
+        const txt = document.createTextNode("Store as global");
+        btn.appendChild(txt);
+        $(btn).data("eval-num", numberOfEvals++);
+        $(btn).data("eval-context", objects[objects.length-1]);
+        $(btn).data("eval-result", val);
+        btn.classList.add("saveBtn");
+        btn.onclick = saveVariable;
 
-    div.appendChild(btn);
+        div.appendChild(btn);
+    }
+    
     div.appendChild(node);
 
     outputDiv.insertBefore(div, outputDiv.childNodes[1]);
@@ -241,6 +257,7 @@ function onInput(){
 }
 
 function onKeyDown(event){
+    if(gameComplete) return true;
     validation.innerText = "";
     var key = event.keyCode || event.charCode;
     if(submitKeys.includes(key)){ // enter ;
@@ -542,6 +559,7 @@ function newInput(){
 }
 
 function load(){
+    game.isGameWon = () => game.clips == 3e+55
     newInput();
     setupSources('paperclips/main.js', "source-main")
     setupSources('paperclips/combat.js', "source-combat")
